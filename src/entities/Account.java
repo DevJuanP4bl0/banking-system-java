@@ -1,17 +1,20 @@
 package entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Account {
+	private static List<Account> accounts = new ArrayList<>();
+	private static int nextAccountNumber = 1; 
+	
 	private int accountNumber;
 	private String accountHolder;
 	private double value;
 	
-	private static int nextAccountNumber = 1; 
-	
 	public Account(String accountHolder) {
 		this.accountNumber = nextAccountNumber++;
 		this.accountHolder = accountHolder;
+		accounts.add(this);
 	}
 
 	public int getAccountNumber() {
@@ -38,10 +41,10 @@ public class Account {
 		this.value -= value;
 	}
 	
-	public int transferTo(double value, List<Account> list, int numberCount) {
+	public int transferTo(double value, int numberCount) {
 		int result = -1;
 		
-		Account account = Account.findAccount(list, numberCount);
+		Account account = Account.findAccount(accounts, numberCount);
 		
 		if (account != null) {
 			withdraw(value);
