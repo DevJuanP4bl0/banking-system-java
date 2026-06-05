@@ -35,9 +35,8 @@ public class Account {
 		return value;
 	}
 	
-	public void printExtract() {
-		for (String entry : extract) 
-			System.out.println(entry);
+	public List<String> getExtract() {
+		return extract;
 	}
 
 	public void deposit(double value) {
